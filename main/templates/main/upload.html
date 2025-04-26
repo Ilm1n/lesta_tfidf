@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>TF-IDF анализ</title>
+  <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>TF-IDF анализ текста</h1>
+
+    <form method="post" enctype="multipart/form-data" class="upload-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn">Загрузить</button>
+    </form>
+
+    {% if doc_count %}
+      <p>Разбито на {{ doc_count }} док.</p>
+    {% endif %}
+
+    {% if page_obj %}
+      <table class="tfidf-table">
+        <thead>
+          <tr>
+            <th>Слово</th>
+            <th>TF</th>
+            <th>
+              IDF
+              {% if sort_order == 'desc' %}
+                <a href="?sort_order=asc&page={{ page_obj.number }}" class="asc-desc">↑</a>
+              {% else %}
+                <a href="?sort_order=desc&page={{ page_obj.number }}" class="asc-desc">↓</a>
+              {% endif %}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in page_obj %}
+          <tr>
+            <td>{{ item.word }}</td>
+            <td>{{ item.tf }}</td>
+            <td>{{ item.idf }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}&sort_order={{ sort_order }}">← Назад</a>
+        {% endif %}
+        <span>Стр. {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}&sort_order={{ sort_order }}">Вперед →</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

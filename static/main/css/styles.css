@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  padding: 20px;
+}
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.upload-form .form-control {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+.btn {
+  padding: 8px 16px;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn:hover { background: #218838; }
+.tfidf-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.tfidf-table th, .tfidf-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.tfidf-table th { background: #343a40; color: #fff; }
+.pagination {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.pagination a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+li{
+  color: red;
+}
+
+.asc-desc{
+  color:#f0f2f5;
+  text-decoration: none;
+}
